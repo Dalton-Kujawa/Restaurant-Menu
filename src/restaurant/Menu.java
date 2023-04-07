@@ -1,20 +1,66 @@
 package restaurant;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 public class Menu {
-    private Date dateUpdated;
+    private LocalDate dateUpdated;
     private ArrayList<MenuItem> items;
     private MenuItem mostRecent;
 
 //    Constructors
-    public Menu(Date dateUpdated, ArrayList<MenuItem> items, MenuItem mostRecent){
+
+    public Menu(){
+        this.dateUpdated = LocalDate.now();
+        this.items = new ArrayList<>();
+    }
+    public Menu(LocalDate dateUpdated, ArrayList<MenuItem> items, MenuItem mostRecent){
         this.dateUpdated = dateUpdated;
         this.items = items;
         this.mostRecent = mostRecent;
     }
 
+    public Menu(ArrayList<MenuItem> items, MenuItem mostRecent){
+        this.dateUpdated = LocalDate.now();
+        this.items = items;
+        this.mostRecent = mostRecent;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "items=" + items +
+                '}';
+    }
+
+    public void printAllItems(Menu menu){
+        System.out.println(menu.toString());
+    }
+
+    public void addItem(MenuItem item){
+        if(this.items.contains(item)){
+            System.out.println("this item is already on the menu");
+        } else {
+            this.items.add(item);
+        }
+    }
+
+    public void removeItem(MenuItem item){
+        this.items.remove(item);
+    }
+
+    public LocalDate lastUpdated(){
+        return this.items.get(this.items.size()-1).getDateAdded();
+    }
+
+    public LocalDateTime
+
+    public void printItem(MenuItem item){
+
+    }
+
 //    Getters
-    public Date getDateUpdated() {
+    public LocalDate getDateUpdated() {
         return dateUpdated;
     }
 
@@ -27,7 +73,7 @@ public class Menu {
     }
 
 // Setters
-    public void setDateUpdated(Date dateUpdated) {
+    public void setDateUpdated(LocalDate dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 
